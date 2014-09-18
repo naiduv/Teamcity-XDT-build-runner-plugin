@@ -9,6 +9,21 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="TeamcityLibs" level="project" />
     <orderEntry type="library" name="open-api" level="project" />
+    <orderEntry type="library" name="lib1" level="application" />
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="lib2" level="application" />
+    <orderEntry type="library" name="bin" level="application" />
+    <orderEntry type="library" name="lib3" level="application" />
+    <orderEntry type="library" name="lib4" level="application" />
+    <orderEntry type="library" name="lib5" level="application" />
+    <orderEntry type="library" name="lib6" level="application" />
+    <orderEntry type="library" name="devPackage" level="application" />
+    <orderEntry type="library" name="test-core" level="application" />
+    <orderEntry type="library" name="lib7" level="application" />
+    <orderEntry type="library" name="com.atlassian.annotations:atlassian-annotations:0.7" level="application" />
+    <orderEntry type="library" name="org.apache.commons:com.springsource.org.apache.commons.cli:1.2.0" level="application" />
+    <orderEntry type="library" name="lib8" level="application" />
+    <orderEntry type="library" name="commons-configuration-1" level="application" />
   </component>
 </module>
 

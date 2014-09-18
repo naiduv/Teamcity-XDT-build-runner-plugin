@@ -1,3 +1,7 @@
 dist/
 lib/
 out/
+
+# Intellij
+.idea/
+*.iws

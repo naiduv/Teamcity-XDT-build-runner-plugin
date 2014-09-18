@@ -262,12 +262,15 @@
     <copy todir="${teamcity.internal.distrib.prep.agent.jars}/${name}/lib" failonerror="false">
       <fileset file="${common.jar.path}"/>
     </copy>
+
+     <copy todir="${teamcity.internal.distrib.prep.agent.jars}/${name}" failonerror="false">
+         <fileset file="${basedir}/msxsl.exe"/>
+     </copy>
   </target>
 
   <target name="prepare.plugin.descriptor.file" if="plugin.descriptor.file.needed">
     <echo message="Copying plugin descriptor file '${source}' to '${dest}'."/>
     <copy file="${source}" tofile="${dest}" failonerror="false"/>
-
     <echo message="Replacing '@Plugin_Version@', '@Plugin_Vendor@' and '@Plugin_Vendor_Url@' in the copied plugin descriptor file."/>
     <replace file="${dest}">
       <replacefilter token="@version@" value="${plugin.version}"/>

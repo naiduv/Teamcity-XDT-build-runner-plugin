@@ -1,5 +1,13 @@
-Teamcity Unity3d Build Runner plugin
+Teamcity XSLT Build Runner plugin
 ====================================
+
+This is forked from the Unity runner.
+It simply runs XSLT Transforms using msxsl.exe, bundled with the code.
+
+Here is the latest [zip](https://docs.google.com/uc?id=0B0QNAIrRLSqVVzl6cjJkWS1ReFU&export=download). Place it in the plugins directory of teamcity and restart the server.
+
+
+UnityRunner Readme below.
 
 Overview
 --------

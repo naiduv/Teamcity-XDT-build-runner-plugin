@@ -1,12 +1,10 @@
-package unityRunner.agent;
+package xsltRunner.agent;
 
 import com.sun.jna.ptr.PointerByReference;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
-
-import java.io.IOException;
 
 public class FileVersionInfoTest {
     private FileVersionInfo.VS_FIXEDFILEINFO mFileInfo;
