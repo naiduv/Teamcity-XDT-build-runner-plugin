@@ -1,25 +1,25 @@
-<project xmlns:artifact="antlib:org.apache.maven.artifact.ant" name="xsltrunner-custom-build" default="dist"
+<project xmlns:artifact="antlib:org.apache.maven.artifact.ant" name="xdtrunner-custom-build" default="dist"
          basedir=".">
 
     <property file="build.properties"/>
-    <property name="plugin.name" value="xsltRunner"/>
+    <property name="plugin.name" value="xdtRunner"/>
     <property name="javac2.home" value="${basedir}/lib-compile"/>
 
     <import file="teamcity-common.xml"/>
-    <import file="xsltrunner.xml"/>
+    <import file="xdtrunner.xml"/>
 
     <target name="package" depends="define.version">
         <package.teamcity.plugin name="${plugin.name}"
-                                 common.output="${xsltrunner-common.output.dir}"
-                                 server.output="${xsltrunner-server.output.dir}"
-                                 agent.output="${xsltrunner-agent.output.dir}"
+                                 common.output="${xdtrunner-common.output.dir}"
+                                 server.output="${xdtrunner-server.output.dir}"
+                                 agent.output="${xdtrunner-agent.output.dir}"
                                  server.lib.dir="lib" server.lib.includes="*.jar"
                                  plugin.descriptor.file="${basedir}/teamcity-plugin.xml"
                                  plugin.version="${plugin.version}">
             <agent-additional-files>
                 <fileset dir="${basedir}" id="agent-additional-files">
-                    <include name="${xsltrunner-agent.relative.output.dir}/*.exe"></include>
-                    <include name="${xsltrunner-agent.relative.output.dir}/*.config"></include>
+                    <include name="${xdtrunner-agent.relative.output.dir}/*.exe"></include>
+                    <include name="${xdtrunner-agent.relative.output.dir}/*.config"></include>
                     <include name="lib/*.jar"/>
                     <exclude name="lib/*maven-ant-tasks*"/>
                 </fileset>
@@ -47,7 +47,7 @@
 
     <target name="dist" depends="check.teamcitydistribution,all,package"/>
 
-    <target name="clean" depends="xsltrunner.clean"/>
+    <target name="clean" depends="xdtrunner.clean"/>
 
     <target name="deploy" depends="dist">
         <deploy.teamcity.plugin name="${plugin.name}"/>

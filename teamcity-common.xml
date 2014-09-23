@@ -264,7 +264,7 @@
     </copy>
 
      <copy todir="${teamcity.internal.distrib.prep.agent.jars}/${name}" failonerror="false">
-         <fileset file="${basedir}/msxsl.exe"/>
+         <fileset file="${basedir}/ctt.exe"/>
      </copy>
   </target>
 

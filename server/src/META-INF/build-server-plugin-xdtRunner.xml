@@ -8,8 +8,6 @@
                            http://www.springframework.org/schema/lang
                            http://www.springframework.org/schema/lang/spring-lang-2.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
        default-autowire="constructor">
-
-  <bean id="xsltRunnerAgentListener" class="xsltRunner.agent.AgentListener"/>
-  <bean id="xsltRunnerBuildServiceFactory" class="xsltRunner.agent.XsltRunnerBuildServiceFactory"/>
-
+  <bean id="xdtRunnerListener" class="xdtRunner.server.ServerListener"/>
+  <bean id="xdtRunnerRunType" class="xdtRunner.server.XdtRunnerRunType"/>
 </beans>

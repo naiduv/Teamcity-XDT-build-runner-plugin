@@ -20,39 +20,39 @@
 
 <tr>
     <th>
-        <label for="argument.input_path">Input path: </label>
+        <label for="argument.input_path">Source file path: </label>
     </th>
     <td>
         <props:textProperty name="argument.input_path" style="width:32em;"/>
         <span class="error" id="error_argument.input_path"></span>
         <span class="smallNote">
-             Input file to msxsl.exe
+             Source file to ctt.exe
         </span>
     </td>
 </tr>
 
 <tr>
     <th>
-        <label for="argument.xsl_path">XSL file path: </label>
+        <label for="argument.xd_path">Transform file path: </label>
     </th>
     <td>
-        <props:textProperty name="argument.xsl_path" style="width:32em;"/>
-        <span class="error" id="error_argument.xsl_path"></span>
+        <props:textProperty name="argument.xd_path" style="width:32em;"/>
+        <span class="error" id="error_argument.xd_path"></span>
         <span class="smallNote">
-             XSL file required for conversion.
+             Transformation file required for conversion.
         </span>
     </td>
 </tr>
 
 <tr>
     <th>
-        <label for="argument.output_path">Output path: </label>
+        <label for="argument.output_path">Destination file path: </label>
     </th>
     <td>
         <props:textProperty name="argument.output_path" style="width:32em;"/>
         <span class="error" id="error_argument.output_path"></span>
         <span class="smallNote">
-             Output file to msxsl.exe
+             Destination file to ctt.exe
         </span>
     </td>
 </tr>
