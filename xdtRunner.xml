@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="xdtrunner" default="all">
+  
+  
+  <property file="xdtrunner.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="128m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.pyc/**"/>
+    <exclude name="**/.pyo/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/*.lib/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/.bundle/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.zip"/>
+    <include name="*.war"/>
+    <include name="*.egg"/>
+    <include name="*.ear"/>
+    <include name="*.swc"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <include name="**/?*.properties"/>
+    <include name="**/?*.xml"/>
+    <include name="**/?*.gif"/>
+    <include name="**/?*.png"/>
+    <include name="**/?*.jpeg"/>
+    <include name="**/?*.jpg"/>
+    <include name="**/?*.html"/>
+    <include name="**/?*.dtd"/>
+    <include name="**/?*.tld"/>
+    <include name="**/?*.ftl"/>
+    <include name="**/?*.htm"/>
+    <include name="**/?*.jsp"/>
+    <include name="**/?*.js"/>
+    <include name="**/?*.exe"/>
+    <include name="**/?*.config"/>
+  </patternset>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.teamcity_open_api_agent.classpath">
+    <pathelement location="${path.variable.teamcitydistribution}/devPackage/agent-api.jar"/>
+  </path>
+  
+  <path id="library.teamcity_open_api_common.classpath">
+    <pathelement location="${path.variable.teamcitydistribution}/devPackage/common-api.jar"/>
+    <pathelement location="${path.variable.teamcitydistribution}/devPackage/runtime-util.jar"/>
+  </path>
+  
+  <path id="library.teamcity_open_api_server.classpath">
+    <pathelement location="${path.variable.teamcitydistribution}/devPackage/server-api.jar"/>
+  </path>
+  
+  <path id="library.teamcity_third-party_common.classpath">
+    <pathelement location="${path.variable.teamcitydistribution}/webapps/ROOT/WEB-INF/lib/annotations.jar"/>
+    <pathelement location="${path.variable.teamcitydistribution}/webapps/ROOT/WEB-INF/lib/openapi.jar"/>
+    <pathelement location="${path.variable.teamcitydistribution}/webapps/ROOT/WEB-INF/lib/spring.jar"/>
+    <pathelement location="${path.variable.teamcitydistribution}/webapps/ROOT/WEB-INF/lib/util.jar"/>
+  </path>
+    
+  <path id="library.classpath">
+      <pathelement location="${basedir}/lib/commons-io-2.4.jar"/>
+      <pathelement location="${basedir}/lib/commons-configuration-1.9.jar"/>
+      <pathelement location="${basedir}/lib/commons-lang-2.6.jar"/>
+      <pathelement location="${basedir}/lib/commons-logging-1.1.1.jar"/>
+      <pathelement location="${basedir}/lib/jna-3.4.0.jar"/>
+      <pathelement location="${basedir}/lib/platform-3.4.0.jar"/>
+  </path>
+  
+  <path id="library.teamcity_third-party_server.classpath">
+    <pathelement location="${path.variable.teamcitydistribution}/webapps/ROOT/WEB-INF/lib/spring-webmvc.jar"/>
+  </path>
+  
+  <path id="library.tomcat.classpath">
+    <pathelement location="${path.variable.teamcitydistribution}/lib/servlet-api.jar"/>
+  </path>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module XdtRunner-common -->
+  
+  <dirname property="module.xdtrunner-common.basedir" file="${ant.file}"/>
+  
+  
+  
+  <property name="compiler.args.xdtrunner-common" value="${compiler.args}"/>
+  
+  <property name="xdtrunner-common.output.dir" value="${module.xdtrunner-common.basedir}/out/production/xdtrunner-common"/>
+  <property name="xdtrunner-common.testoutput.dir" value="${module.xdtrunner-common.basedir}/out/test/xdtrunner-common"/>
+  
+  <path id="xdtrunner-common.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="xdtrunner-common.module.production.classpath">
+    <path refid="library.teamcity_open_api_common.classpath"/>
+    <path refid="library.teamcity_third-party_common.classpath"/>
+  </path>
+  
+  <path id="xdtrunner-common.runtime.production.module.classpath">
+    <pathelement location="${xdtrunner-common.output.dir}"/>
+    <path refid="library.teamcity_open_api_common.classpath"/>
+    <path refid="library.teamcity_third-party_common.classpath"/>
+  </path>
+  
+  <path id="xdtrunner-common.module.classpath">
+    <pathelement location="${xdtrunner-common.output.dir}"/>
+    <path refid="library.teamcity_open_api_common.classpath"/>
+    <path refid="library.teamcity_third-party_common.classpath"/>
+  </path>
+  
+  <path id="xdtrunner-common.runtime.module.classpath">
+    <pathelement location="${xdtrunner-common.testoutput.dir}"/>
+    <pathelement location="${xdtrunner-common.output.dir}"/>
+    <path refid="library.teamcity_open_api_common.classpath"/>
+    <path refid="library.teamcity_third-party_common.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.xdtrunner-common">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.xdtrunner-common">
+    <patternset refid="excluded.from.module.xdtrunner-common"/>
+  </patternset>
+  
+  <path id="xdtrunner-common.module.sourcepath">
+    <dirset dir="${module.xdtrunner-common.basedir}/common">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.xdtrunner-common" depends="compile.module.xdtrunner-common.production,compile.module.xdtrunner-common.tests" description="Compile module xdtrunner-common"/>
+  
+  <target name="compile.module.xdtrunner-common.production" description="Compile module xdtrunner-common; production classes">
+    <mkdir dir="${xdtrunner-common.output.dir}"/>
+    <javac destdir="${xdtrunner-common.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.xdtrunner-common}"/>
+      <bootclasspath refid="xdtrunner-common.module.bootclasspath"/>
+      <classpath refid="xdtrunner-common.module.production.classpath"/>
+      <src refid="xdtrunner-common.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.xdtrunner-common"/>
+    </javac>
+    
+    <copy todir="${xdtrunner-common.output.dir}">
+      <fileset dir="${module.xdtrunner-common.basedir}/common/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.xdtrunner-common.tests" depends="compile.module.xdtrunner-common.production" description="compile module xdtrunner-common; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.xdtrunner-common" description="cleanup module">
+    <delete dir="${xdtrunner-common.output.dir}"/>
+    <delete dir="${xdtrunner-common.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module xdtrunner-agent -->
+  
+  <dirname property="module.xdtrunner-agent.basedir" file="${ant.file}"/>
+  
+  
+  
+  <property name="compiler.args.xdtrunner-agent" value="${compiler.args}"/>
+  <property name="xdtrunner-agent.relative.output.dir" value="out/production/xdtrunner-agent"/>
+  <property name="xdtrunner-agent.output.dir" value="${module.xdtrunner-agent.basedir}/${xdtrunner-agent.relative.output.dir}"/>
+  <property name="xdtrunner-agent.testoutput.dir" value="${module.xdtrunner-agent.basedir}/out/test/xdtrunner-agent"/>
+  
+  <path id="xdtrunner-agent.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="xdtrunner-agent.module.production.classpath">
+    <path refid="library.teamcity_open_api_agent.classpath"/>
+    <path refid="library.teamcity_open_api_common.classpath"/>
+    <path refid="library.teamcity_third-party_common.classpath"/>
+    <path refid="library.classpath"/>
+    <pathelement location="${xdtrunner-common.output.dir}"/>
+  </path>
+  
+  <path id="xdtrunner-agent.runtime.production.module.classpath">
+    <pathelement location="${xdtrunner-agent.output.dir}"/>
+    <path refid="library.teamcity_open_api_agent.classpath"/>
+    <path refid="library.teamcity_open_api_common.classpath"/>
+    <path refid="library.teamcity_third-party_common.classpath"/>
+    <path refid="library.classpath"/>
+    <path refid="xdtrunner-common.runtime.production.module.classpath"/>
+  </path>
+  
+  <path id="xdtrunner-agent.module.classpath">
+    <pathelement location="${xdtrunner-agent.output.dir}"/>
+    <path refid="library.teamcity_open_api_agent.classpath"/>
+    <path refid="library.teamcity_open_api_common.classpath"/>
+    <path refid="library.teamcity_third-party_common.classpath"/>
+    <path refid="library.classpath"/>
+    <pathelement location="${xdtrunner-common.testoutput.dir}"/>
+    <pathelement location="${xdtrunner-common.output.dir}"/>
+  </path>
+  
+  <path id="xdtrunner-agent.runtime.module.classpath">
+    <pathelement location="${xdtrunner-agent.testoutput.dir}"/>
+    <pathelement location="${xdtrunner-agent.output.dir}"/>
+    <path refid="library.teamcity_open_api_agent.classpath"/>
+    <path refid="library.teamcity_open_api_common.classpath"/>
+    <path refid="library.teamcity_third-party_common.classpath"/>
+    <path refid="library.classpath"/>
+    <path refid="xdtrunner-common.runtime.module.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.xdtrunner-agent">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.xdtrunner-agent">
+    <patternset refid="excluded.from.module.xdtrunner-agent"/>
+  </patternset>
+  
+  <path id="xdtrunner-agent.module.sourcepath">
+    <dirset dir="${module.xdtrunner-agent.basedir}/agent">
+      <include name="src"/>
+      <include name="bin"/>
+    </dirset>
+  </path>
+  
+  <target name="compile.module.xdtrunner-agent" depends="compile.module.xdtrunner-agent.production,compile.module.xdtrunner-agent.tests" description="Compile module xdtrunner-agent"/>
+  
+  <target name="compile.module.xdtrunner-agent.production" depends="compile.module.xdtrunner-common" description="Compile module xdtrunner-agent; production classes">
+    <mkdir dir="${xdtrunner-agent.output.dir}"/>
+    <javac destdir="${xdtrunner-agent.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.xdtrunner-agent}"/>
+      <bootclasspath refid="xdtrunner-agent.module.bootclasspath"/>
+      <classpath refid="xdtrunner-agent.module.production.classpath"/>
+      <src refid="xdtrunner-agent.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.xdtrunner-agent"/>
+    </javac>
+    
+    <copy todir="${xdtrunner-agent.output.dir}">
+      <fileset dir="${module.xdtrunner-agent.basedir}/agent/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+    <copy todir="${xdtrunner-agent.output.dir}/bin">
+      <fileset dir="${module.xdtrunner-agent.basedir}/agent/bin">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.xdtrunner-agent.tests" depends="compile.module.xdtrunner-agent.production" description="compile module xdtrunner-agent; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.xdtrunner-agent" description="cleanup module">
+    <delete dir="${xdtrunner-agent.output.dir}"/>
+    <delete dir="${xdtrunner-agent.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module xdtrunner-server -->
+  
+  <dirname property="module.xdtrunner-server.basedir" file="${ant.file}"/>
+  
+  
+  
+  <property name="compiler.args.xdtrunner-server" value="${compiler.args}"/>
+  
+  <property name="xdtrunner-server.output.dir" value="${module.xdtrunner-server.basedir}/out/production/xdtrunner-server"/>
+  <property name="xdtrunner-server.testoutput.dir" value="${module.xdtrunner-server.basedir}/out/test/xdtrunner-server"/>
+  
+  <path id="xdtrunner-server.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="xdtrunner-server.module.production.classpath">
+    <path refid="library.tomcat.classpath"/>
+    <path refid="library.teamcity_open_api_server.classpath"/>
+    <path refid="library.teamcity_open_api_common.classpath"/>
+    <path refid="library.teamcity_third-party_common.classpath"/>
+    <path refid="library.teamcity_third-party_server.classpath"/>
+    <pathelement location="${xdtrunner-common.output.dir}"/>
+  </path>
+  
+  <path id="xdtrunner-server.runtime.production.module.classpath">
+    <pathelement location="${xdtrunner-server.output.dir}"/>
+    <path refid="library.tomcat.classpath"/>
+    <path refid="library.teamcity_open_api_server.classpath"/>
+    <path refid="library.teamcity_open_api_common.classpath"/>
+    <path refid="library.teamcity_third-party_common.classpath"/>
+    <path refid="library.teamcity_third-party_server.classpath"/>
+    <path refid="xdtrunner-common.runtime.production.module.classpath"/>
+  </path>
+  
+  <path id="xdtrunner-server.module.classpath">
+    <pathelement location="${xdtrunner-server.output.dir}"/>
+    <path refid="library.tomcat.classpath"/>
+    <path refid="library.teamcity_open_api_server.classpath"/>
+    <path refid="library.teamcity_open_api_common.classpath"/>
+    <path refid="library.teamcity_third-party_common.classpath"/>
+    <path refid="library.teamcity_third-party_server.classpath"/>
+    <pathelement location="${xdtrunner-common.testoutput.dir}"/>
+    <pathelement location="${xdtrunner-common.output.dir}"/>
+  </path>
+  
+  <path id="xdtrunner-server.runtime.module.classpath">
+    <pathelement location="${xdtrunner-server.testoutput.dir}"/>
+    <pathelement location="${xdtrunner-server.output.dir}"/>
+    <path refid="library.tomcat.classpath"/>
+    <path refid="library.teamcity_open_api_server.classpath"/>
+    <path refid="library.teamcity_open_api_common.classpath"/>
+    <path refid="library.teamcity_third-party_common.classpath"/>
+    <path refid="library.teamcity_third-party_server.classpath"/>
+    <path refid="xdtrunner-common.runtime.module.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.xdtrunner-server">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.xdtrunner-server">
+    <patternset refid="excluded.from.module.xdtrunner-server"/>
+  </patternset>
+  
+  <path id="xdtrunner-server.module.sourcepath">
+    <dirset dir="${module.xdtrunner-server.basedir}/server">
+      <include name="src"/>
+      <include name="resources"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.xdtrunner-server" depends="compile.module.xdtrunner-server.production,compile.module.xdtrunner-server.tests" description="Compile module xdtrunner-server"/>
+  
+  <target name="compile.module.xdtrunner-server.production" depends="compile.module.xdtrunner-common" description="Compile module xdtrunner-server; production classes">
+    <mkdir dir="${xdtrunner-server.output.dir}"/>
+    <javac destdir="${xdtrunner-server.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.xdtrunner-server}"/>
+      <bootclasspath refid="xdtrunner-server.module.bootclasspath"/>
+      <classpath refid="xdtrunner-server.module.production.classpath"/>
+      <src refid="xdtrunner-server.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.xdtrunner-server"/>
+    </javac>
+    
+    <copy todir="${xdtrunner-server.output.dir}">
+      <fileset dir="${module.xdtrunner-server.basedir}/server/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.xdtrunner-server.basedir}/server/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.xdtrunner-server.tests" depends="compile.module.xdtrunner-server.production" description="compile module xdtrunner-server; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.xdtrunner-server" description="cleanup module">
+    <delete dir="${xdtrunner-server.output.dir}"/>
+    <delete dir="${xdtrunner-server.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.xdtrunner-common, clean.module.xdtrunner-agent, clean.module.xdtrunner-server" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.xdtrunner-common, compile.module.xdtrunner-agent, compile.module.xdtrunner-server" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>
