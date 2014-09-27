@@ -14,7 +14,7 @@ public interface PluginConstants {
     final String PROPERTY_INPUT_PATH = "argument.input_path";
     final String PROPERTY_OUTPUT_PATH = "argument.output_path";
     final String PROPERTY_XD_PATH = "argument.xd_path";
-
+    final String PROPERTY_CONFIGS_COUNT = "argument.configs_count";
 
     final String PROPERTY_SHOW_ME = "argument.show_me";
     final String PROPERTY_BATCH_MODE = "argument.batch_mode";

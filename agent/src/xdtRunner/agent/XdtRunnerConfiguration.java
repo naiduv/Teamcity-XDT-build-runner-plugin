@@ -22,9 +22,10 @@ public class XdtRunnerConfiguration {
         Mac
     }
 
-    final String inputPath;
-    final String outputPath;
-    final String xdPath;
+    final String[] inputPath = new String[10];
+    final String[] outputPath = new String[10];
+    final String[] xdPath = new String[10];
+    final int configsCount;
 
     final boolean quit;
     final boolean batchMode;
@@ -67,12 +68,18 @@ public class XdtRunnerConfiguration {
 
         pluginMsxdPath = agentConfiguration.getAgentPluginsDirectory().getPath() + "//" + PluginConstants.RUN_TYPE + "//ctt.exe";
 
-        inputPath = FilenameUtils.separatorsToSystem(
-                Parameters.getString(runnerParameters, PluginConstants.PROPERTY_INPUT_PATH));
-        outputPath = FilenameUtils.separatorsToSystem(
-                Parameters.getString(runnerParameters, PluginConstants.PROPERTY_OUTPUT_PATH));
-        xdPath = FilenameUtils.separatorsToSystem(
-                Parameters.getString(runnerParameters, PluginConstants.PROPERTY_XD_PATH));
+        configsCount = Integer.parseInt(FilenameUtils.separatorsToSystem(
+                Parameters.getString(runnerParameters, PluginConstants.PROPERTY_CONFIGS_COUNT)));
+
+        for(int i=0;i<configsCount;i++) {
+            inputPath[i] = FilenameUtils.separatorsToSystem(
+                    Parameters.getString(runnerParameters, PluginConstants.PROPERTY_INPUT_PATH + '_' + i));
+            outputPath[i] = FilenameUtils.separatorsToSystem(
+                    Parameters.getString(runnerParameters, PluginConstants.PROPERTY_OUTPUT_PATH + '_' +i));
+            xdPath[i] = FilenameUtils.separatorsToSystem(
+                    Parameters.getString(runnerParameters, PluginConstants.PROPERTY_XD_PATH + '_' + i));
+        }
+
 
         quit = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_QUIT);
         showMe = Parameters.getBoolean(runnerParameters, PluginConstants.PROPERTY_SHOW_ME);

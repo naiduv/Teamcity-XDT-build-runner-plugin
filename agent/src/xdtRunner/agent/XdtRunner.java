@@ -42,54 +42,29 @@ public class XdtRunner {
     List<String> getArgs() {
         List<String> args = new ArrayList<String>();
 
-        if (!configuration.inputPath.equals("")) {
-            args.add("s:" + configuration.inputPath);
-        }
 
-        if (!configuration.xdPath.equals("")) {
-            args.add("t:" + configuration.xdPath);
-        }
+        for (int i = 0; i < configuration.configsCount; i++) {
+            if(i==0)
+                args.add("/c");
+            else
+                args.add("&");
 
-        if (!configuration.outputPath.equals("")) {
-            args.add("d:" + configuration.outputPath);
-        }
+            args.add(configuration.pluginMsxdPath);
 
-//
-//
-//
-//        if (configuration.batchMode)
-//            args.add("-batchmode");
-//
-//        if (configuration.showMe)
-//            args.add("-showme");
-//
-//        if (configuration.noGraphics)
-//            args.add("-nographics");
-//
-//        if (configuration.quit)
-//            args.add("-quit");
-//
-//        if (!configuration.buildPlayer.equals("")) {
-//            args.add(String.format("-%s", configuration.buildPlayer));
-//            args.add(String.format("%s", configuration.buildPath));
-//        }
-//
-//        if (!configuration.projectPath.equals("")) {
-//            args.add("-projectPath");
-//            args.add(configuration.projectPath);
-//        }
-//
-//        if (!configuration.executeMethod.equals("")) {
-//            args.add("-executeMethod");
-//            args.add(configuration.executeMethod);
-//        }
-//
-//        if (configuration.useCleanedLog) {
-//            args.add("-cleanedLogFile");
-//            args.add(configuration.getCleanedLogPath());
-//        }
-//
-//        args.add(configuration.extraOpts);
+
+            if (!configuration.inputPath[i].equals("")) {
+                args.add("s:" + configuration.inputPath[i]);
+            }
+
+            if (!configuration.xdPath[i].equals("")) {
+                args.add("t:" + configuration.xdPath[i]);
+            }
+
+            if (!configuration.outputPath[i].equals("")) {
+                args.add("d:" + configuration.outputPath[i]);
+            }
+
+        }
 
         return args;
     }

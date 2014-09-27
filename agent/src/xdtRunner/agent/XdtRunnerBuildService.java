@@ -26,7 +26,7 @@ public class XdtRunnerBuildService extends BuildServiceAdapter {
     @NotNull
     @Override
     public ProgramCommandLine makeProgramCommandLine() throws RunBuildException {
-        return createProgramCommandline(runner.getExecutable(), runner.getArgs());
+        return createProgramCommandline("cmd.exe", runner.getArgs());
     }
 
     @NotNull
