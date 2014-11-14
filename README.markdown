@@ -2,7 +2,7 @@ Teamcity XDT Build Runner plugin
 ====================================
 
 This is forked from the Unity runner.
-It simply runs XDT Transforms using msxd.exe, bundled with the code.
+It simply runs XDT Transforms using ctt.exe, bundled with the code.
 
 Here is the latest [zip](https://docs.google.com/uc?id=0B0QNAIrRLSqVeGE0elMzTlZ2SGM&export=download). Place it in the plugins directory of teamcity and restart the server.
 
